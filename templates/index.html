@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mercedes-Benz News Summary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding-top: 20px;
+        }
+        .summary-card {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            background-color: #333;
+        }
+        input[type="submit"] {
+            background-color: #444;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+        select, label {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>BenzPulse: News Analyses for Mercedes-Benz</h1>
+
+        <form action="/submit_query" method="post" style="margin-bottom: 20px;">
+            <label for="query">Select Query:</label>
+            <select name="query" id="query">
+                {% for q in queries %}
+                    <option value="{{ q }}">{{ q }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Search">
+        </form>
+        
+        {% for summary in summaries %}
+            <div class="summary-card">
+                <h3><a href="{{ summary.url }}" target="_blank" rel="noopener noreferrer">Source</a> (Reliability: {{ summary.reliability }})</h3>
+                <p><strong>Summary:</strong> {{ summary.summary }}</p>
+                <p><strong>Impact:</strong> {{ summary.impact }}</p>
+                <p><strong>Recommendation:</strong> {{ summary.recommendation }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
