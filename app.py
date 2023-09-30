@@ -10,7 +10,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 # Initialize the OpenAI API (replace "YOUR-API-KEY" with your actual API key)
-openai.api_key = "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"
+openai.api_key = "OPENAI-API-KEY"
 
 today = datetime.now().date()
 
